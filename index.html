@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Email design and lifecycle marketing work by Anish Kapoor. Klaviyo across five international storefronts.">
+<meta property="og:title" content="Anish Kapoor - Email Work">
+<meta property="og:description" content="Klaviyo campaigns and flows, and the email design behind them.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%E2%9C%89%EF%B8%8F</text></svg>">
+<title>Anish Kapoor Email Work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body>
+<style>
+:root {
+  --blue: #0C4DA2;
+  --blue-deep: #083A7C;
+  --blue-tint: #EEF4FB;
+  --blue-line: #C9D9EE;
+  --wa-green: #1FA855;
+
+  --ink: #101623;
+  --body: #3D4657;
+  --muted: #6B7486;
+  --line: #E4E7EC;
+  --paper: #FFFFFF;
+  --bg: #FAFAF8;
+  --scrim: rgba(250,250,248,0);
+  --scrim-solid: #FFFFFF;
+  --overlay: rgba(16,22,35,.78);
+
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --text-hero: clamp(2.25rem, 5vw, 3.75rem);
+  --text-h2: clamp(1.6rem, 3.2vw, 2.25rem);
+  --text-h3: clamp(1.15rem, 2vw, 1.375rem);
+  --text-body-lg: 1.1875rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-eyebrow: 0.8125rem;
+
+  --space-section: clamp(4rem, 8vw, 6.5rem);
+  --radius: 14px;
+  --radius-pill: 100px;
+  --shadow-card: 0 1px 2px rgba(16,22,35,.05), 0 8px 28px rgba(16,22,35,.07);
+  --shadow-lift: 0 2px 4px rgba(16,22,35,.06), 0 16px 44px rgba(16,22,35,.13);
+  --container: 1160px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --blue: #6BA1EC;
+    --blue-deep: #8FBAF3;
+    --blue-tint: #152033;
+    --blue-line: #2B3E5C;
+    --wa-green: #3FCB77;
+
+    --ink: #F1F4F9;
+    --body: #C0C7D4;
+    --muted: #8A93A5;
+    --line: #262D3A;
+    --paper: #171C25;
+    --bg: #0F131A;
+    --scrim: rgba(23,28,37,0);
+    --scrim-solid: #171C25;
+    --overlay: rgba(6,9,14,.86);
+
+    --shadow-card: 0 1px 2px rgba(0,0,0,.4), 0 8px 28px rgba(0,0,0,.45);
+    --shadow-lift: 0 2px 4px rgba(0,0,0,.45), 0 16px 44px rgba(0,0,0,.6);
+  }
+}
+
+:root[data-theme="dark"] {
+  --blue: #6BA1EC;
+  --blue-deep: #8FBAF3;
+  --blue-tint: #152033;
+  --blue-line: #2B3E5C;
+  --wa-green: #3FCB77;
+
+  --ink: #F1F4F9;
+  --body: #C0C7D4;
+  --muted: #8A93A5;
+  --line: #262D3A;
+  --paper: #171C25;
+  --bg: #0F131A;
+  --scrim: rgba(23,28,37,0);
+  --scrim-solid: #171C25;
+  --overlay: rgba(6,9,14,.86);
+
+  --shadow-card: 0 1px 2px rgba(0,0,0,.4), 0 8px 28px rgba(0,0,0,.45);
+  --shadow-lift: 0 2px 4px rgba(0,0,0,.45), 0 16px 44px rgba(0,0,0,.6);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--body);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: var(--container); margin: 0 auto; padding: 0 1.5rem; }
+
+h1, h2, h3 { font-family: var(--font-display); color: var(--ink); font-weight: 500; text-wrap: balance; margin: 0; line-height: 1.15; }
+
+a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--blue-deep); }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+
+.eyebrow {
+  font-size: var(--text-eyebrow);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--blue);
+  margin: 0;
+}
+
+/* ---------- Hero ---------- */
+
+.hero { padding: clamp(3.5rem, 7vw, 5.5rem) 0 clamp(2.5rem, 5vw, 4rem); }
+.hero h1 { font-size: var(--text-hero); margin: .85rem 0 0; letter-spacing: -.015em; }
+.hero .lede {
+  font-size: var(--text-body-lg);
+  max-width: 46ch;
+  margin: 1.25rem 0 0;
+}
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: 2rem;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .45rem .9rem;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-small);
+  color: var(--body);
+  text-decoration: none;
+  font-weight: 500;
+}
+a.chip:hover { border-color: var(--blue-line); background: var(--blue-tint); color: var(--blue); }
+.chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--wa-green); flex: none; }
+
+/* ---------- Section frame ---------- */
+
+.section { padding: var(--space-section) 0; border-top: 1px solid var(--line); }
+.section-head { max-width: 60ch; margin-bottom: 2.75rem; }
+.section-head h2 { font-size: var(--text-h2); margin-top: .8rem; letter-spacing: -.01em; }
+.section-head p { margin: 1rem 0 0; max-width: 58ch; }
+.note { font-size: var(--text-small); color: var(--muted); }
+
+/* ---------- Gallery ---------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem 1.75rem;
+}
+
+.tile {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.frame {
+  position: relative;
+  height: 420px;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--scrim-solid);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease;
+}
+.tile:hover .frame, .tile:focus-visible .frame {
+  box-shadow: var(--shadow-lift);
+  transform: translateY(-3px);
+  border-color: var(--blue-line);
+}
+
+.frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 4.5s cubic-bezier(.22,.61,.36,1);
+}
+
+.fade {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 96px;
+  background: linear-gradient(to bottom, var(--scrim), var(--scrim-solid));
+  pointer-events: none;
+}
+
+.open-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%) translateY(6px);
+  opacity: 0;
+  transition: opacity .22s ease, transform .22s ease;
+  background: var(--ink);
+  color: var(--bg);
+  font-size: var(--text-eyebrow);
+  font-weight: 600;
+  letter-spacing: .02em;
+  padding: .4rem .85rem;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+.tile:hover .open-cue, .tile:focus-visible .open-cue { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  background: var(--blue);
+  color: var(--paper);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: .3rem .6rem;
+  border-radius: 6px;
+}
+
+.cap { margin-top: .9rem; }
+.cap .t1 { font-size: var(--text-body); font-weight: 600; color: var(--ink); }
+.cap .t2 { font-size: var(--text-small); color: var(--muted); margin-top: .15rem; }
+
+@media (hover: hover) and (pointer: fine) {
+  .tile:hover .frame img { transform: translateY(calc(-1 * var(--peek, 200px))); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .frame img, .open-cue, .frame { transition: none !important; }
+  .tile:hover .frame img { transform: none; }
+}
+
+/* ---------- Lightbox ---------- */
+
+.lb {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: var(--overlay);
+  display: none;
+  overflow-y: auto;
+  padding: clamp(1rem, 4vw, 3rem) 1rem;
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+.lb[open], .lb.is-open { display: block; }
+
+.lb-inner { max-width: 720px; margin: 0 auto; }
+.lb-bar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: .55rem .6rem .55rem 1.15rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-card);
+}
+.lb-title { font-weight: 600; color: var(--ink); font-size: var(--text-small); }
+.lb-close {
+  border: 0;
+  background: var(--ink);
+  color: var(--bg);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+  flex: none;
+  font-family: var(--font-body);
+}
+.lb img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+/* ---------- Programs ---------- */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 1.5rem;
+}
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-card);
+}
+.card h3 { font-size: var(--text-h3); margin-bottom: .2rem; }
+.card .role { font-size: var(--text-eyebrow); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.card p { margin: .9rem 0 0; font-size: var(--text-small); }
+.card ul { margin: .9rem 0 0; padding-left: 1.1rem; font-size: var(--text-small); }
+.card li { margin-bottom: .4rem; }
+.card li::marker { color: var(--blue); }
+
+.stat-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+.stat .n {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--ink);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+.stat .l { font-size: var(--text-eyebrow); color: var(--muted); margin-top: .2rem; }
+
+.quote {
+  margin: 1.25rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  font-size: var(--text-small);
+  font-style: italic;
+  color: var(--body);
+  line-height: 1.65;
+}
+.quote cite {
+  display: block;
+  margin-top: .6rem;
+  font-style: normal;
+  font-size: var(--text-eyebrow);
+  color: var(--muted);
+  letter-spacing: .02em;
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: 1.5rem;
+}
+.tool {
+  font-size: var(--text-small);
+  padding: .35rem .8rem;
+  border-radius: 6px;
+  background: var(--blue-tint);
+  border: 1px solid var(--blue-line);
+  color: var(--blue);
+  font-weight: 500;
+}
+
+/* ---------- Footer ---------- */
+
+.foot { border-top: 1px solid var(--line); padding: 3.5rem 0 4.5rem; }
+.foot h2 { font-size: var(--text-h3); }
+.foot p { margin: .75rem 0 0; max-width: 52ch; }
+.foot .meta-row { margin-top: 1.75rem; }
+.colophon { margin-top: 3rem; font-size: var(--text-eyebrow); color: var(--muted); }
+</style>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow">Klaviyo &amp; Lifecycle Marketing</p>
+    <h1>Anish Kapoor</h1>
+    <p class="lede">I build the emails, and the flows behind them. Six years of lifecycle
+      work, currently running Klaviyo across five international storefronts for a live
+      D2C client.</p>
+    <div class="meta-row">
+      <span class="chip"><span class="dot"></span>Available, full PST hours</span>
+      <a class="chip" href="mailto:anishkapoor@productsiddha.com">anishkapoor@productsiddha.com</a>
+      <a class="chip" href="https://www.linkedin.com/in/anish-kapoor-a531a1122/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="chip" href="https://productsiddha.com" target="_blank" rel="noopener">productsiddha.com</a>
+    </div>
+  </header>
+
+  <section class="section" id="work">
+    <div class="section-head">
+      <p class="eyebrow">Email design</p>
+      <h2>Campaigns and flows, as they land in the inbox</h2>
+      <p>Every piece below was designed and built end to end: brief, copy, art direction,
+        template build. Click any one to read the full email.</p>
+      <p class="note">Stanbarry is live client work, shown with permission. The rest are
+        concept pieces built to a brief.</p>
+    </div>
+
+    <div class="grid" id="grid">
+      <button class="tile" data-src="img/stanbarry.jpg" data-title="Stanbarry email">
+        <div class="frame" style="--peek:220px"><span class="badge">Live client</span>
+          <img src="img/stanbarry.jpg" alt="Stanbarry marketing email design" loading="lazy">
+          <div class="fade"></div>
+          <span class="open-cue">View full email</span>
+        </div>
+        <div class="cap"><div class="t1">Stanbarry</div><div class="t2">Product launch campaign for a D2C jewelry brand</div></div>
+      </button>
+      <button class="tile" data-src="img/jim-tonic.jpg" data-title="Jim & Tonic email">
+        <div class="frame" style="--peek:220px">
+          <img src="img/jim-tonic.jpg" alt="Jim & Tonic marketing email design" loading="lazy">
+          <div class="fade"></div>
+          <span class="open-cue">View full email</span>
+        </div>
+        <div class="cap"><div class="t1">Jim &amp; Tonic</div><div class="t2">Limited-release pre-order, scarcity launch built around serving ritual</div></div>
+      </button>
+      <button class="tile" data-src="img/aamra.jpg" data-title="Aamra email">
+        <div class="frame" style="--peek:220px">
+          <img src="img/aamra.jpg" alt="Aamra marketing email design" loading="lazy">
+          <div class="fade"></div>
+          <span class="open-cue">View full email</span>
+        </div>
+        <div class="cap"><div class="t1">Aamra</div><div class="t2">Mother&rsquo;s Day gifting, gift-box merchandising</div></div>
+      </button>
+      <button class="tile" data-src="img/fragrancebuy.jpg" data-title="FragranceBuy email">
+        <div class="frame" style="--peek:220px">
+          <img src="img/fragrancebuy.jpg" alt="FragranceBuy marketing email design" loading="lazy">
+          <div class="fade"></div>
+          <span class="open-cue">View full email</span>
+        </div>
+        <div class="cap"><div class="t1">FragranceBuy</div><div class="t2">Code-expiry winback, urgency plus social proof to recover lapsed carts</div></div>
+      </button>
+      <button class="tile" data-src="img/minus-thirty.jpg" data-title="Minus Thirty email">
+        <div class="frame" style="--peek:220px">
+          <img src="img/minus-thirty.jpg" alt="Minus Thirty marketing email design" loading="lazy">
+          <div class="fade"></div>
+          <span class="open-cue">View full email</span>
+        </div>
+        <div class="cap"><div class="t1">Minus Thirty</div><div class="t2">Match-day moment marketing for a D2C dessert brand</div></div>
+      </button>
+      <button class="tile" data-src="img/and-soda.jpg" data-title="&SODA email">
+        <div class="frame" style="--peek:220px">
+          <img src="img/and-soda.jpg" alt="&SODA marketing email design" loading="lazy">
+          <div class="fade"></div>
+          <span class="open-cue">View full email</span>
+        </div>
+        <div class="cap"><div class="t1">&amp;SODA</div><div class="t2">Range showcase, flavour-led merchandising</div></div>
+      </button>
+    </div>
+  </section>
+
+  <section class="section" id="programs">
+    <div class="section-head">
+      <p class="eyebrow">The programs behind them</p>
+      <h2>What I run when the design is done</h2>
+      <p>Design is the visible half. The rest is segmentation, flow logic, deliverability,
+        and reporting against revenue the client can see in their own dashboard.</p>
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <p class="role">Live retainer &middot; Nov 2024 to present</p>
+        <h3>Stanbarry</h3>
+        <p>D2C jewelry brand running five Shopify storefronts across Germany, the
+          Netherlands, France, Spain, and Australia. I own the Klaviyo program on all five.</p>
+        <ul>
+          <li>Rebuilt the German campaign calendar: campaign revenue went from
+            &euro;7.5k to &euro;17.9k a quarter</li>
+          <li>Built the Dutch storefront's Klaviyo from zero to &euro;23k attributed
+            per quarter, 10% of that store's revenue</li>
+          <li>Own the campaign calendar and the automated flow program across all
+            five markets, reporting monthly against attributed revenue</li>
+        </ul>
+        <div class="stat-line">
+          <div class="stat"><div class="n">5</div><div class="l">Storefronts</div></div>
+          <div class="stat"><div class="n">~&euro;126k</div><div class="l">Attributed per quarter</div></div>
+          <div class="stat"><div class="n">2.4x</div><div class="l">DE campaign revenue</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="role">Project &middot; WhatsApp lifecycle</p>
+        <h3>Awesome Sleep</h3>
+        <p>D2C sleep brand with no automated retention. Built the WhatsApp lifecycle
+          program end to end on n8n, so the same journey logic that runs in Klaviyo runs
+          on a channel with far higher open rates.</p>
+        <ul>
+          <li>Welcome, abandoned cart, post-purchase, and winback journeys, all automated</li>
+          <li>Consent capture and opt-out handling built into every entry point</li>
+          <li>Replaced manual, one-off broadcast messaging</li>
+        </ul>
+        <blockquote class="quote">
+          &ldquo;He stepped in at exactly the right time and helped us navigate some
+          key challenges smoothly. He has a strong understanding of the technical
+          lifecycle and consistently delivers work in a timely manner.&rdquo;
+          <cite>Kaivan Dave, Awesome Sleep</cite>
+        </blockquote>
+      </div>
+
+      <div class="card">
+        <p class="role">GTM consulting &middot; Healthcare</p>
+        <h3>Augmentia</h3>
+        <p>Clinical software for UK primary care, built for NHS general practices.
+          I advised on go to market: positioning, the acquisition motion into practices,
+          and lifecycle communication with clinical staff.</p>
+        <ul>
+          <li>Messaging and segmentation for a clinician audience, not a consumer one</li>
+          <li>Comfortable with the constraint that patient data never touches a
+            marketing platform</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="stack">
+      <span class="tool">Klaviyo</span>
+      <span class="tool">MoEngage</span>
+      <span class="tool">HubSpot</span>
+      <span class="tool">Customer.io</span>
+      <span class="tool">Shopify</span>
+      <span class="tool">WhatsApp Business API</span>
+      <span class="tool">n8n</span>
+      <span class="tool">Mixpanel</span>
+      <span class="tool">Amplitude</span>
+      <span class="tool">Segment</span>
+      <span class="tool">SQL</span>
+      <span class="tool">Google Tag Manager</span>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <h2>Available for freelance lifecycle work</h2>
+    <p>Klaviyo builds, WhatsApp journeys, and the reporting that proves either one
+      is working. Working full PST hours.</p>
+    <div class="meta-row">
+      <a class="chip" href="mailto:anishkapoor@productsiddha.com">anishkapoor@productsiddha.com</a>
+      <a class="chip" href="https://www.linkedin.com/in/anish-kapoor-a531a1122/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="chip" href="https://productsiddha.com/boosting-email-revenue-klaviyo-shopify-ecommerce/" target="_blank" rel="noopener">Klaviyo case study</a>
+    </div>
+    <p class="colophon">Revenue figures are Klaviyo attributed revenue, Placed Order metric,
+      default 5 day open and click attribution window, quarter ending June 2026.</p>
+  </footer>
+
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Full email view">
+  <div class="lb-inner">
+    <div class="lb-bar">
+      <span class="lb-title" id="lbTitle"></span>
+      <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+    </div>
+    <img id="lbImg" src="" alt="">
+  </div>
+</div>
+
+<script>
+(function () {
+  var lb = document.getElementById('lb');
+  var lbImg = document.getElementById('lbImg');
+  var lbTitle = document.getElementById('lbTitle');
+  var lbClose = document.getElementById('lbClose');
+  var last = null;
+
+  function open(btn) {
+    last = btn;
+    lbImg.src = btn.dataset.src;
+    lbImg.alt = btn.dataset.title;
+    lbTitle.textContent = btn.dataset.title;
+    lb.classList.add('is-open');
+    lb.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+    lbClose.focus();
+  }
+
+  function close() {
+    lb.classList.remove('is-open');
+    lbImg.src = '';
+    document.body.style.overflow = '';
+    if (last) { last.focus(); }
+  }
+
+  document.querySelectorAll('.tile').forEach(function (btn) {
+    btn.addEventListener('click', function () { open(btn); });
+  });
+
+  lbClose.addEventListener('click', close);
+  lb.addEventListener('click', function (e) { if (e.target === lb || e.target.classList.contains('lb-inner')) { close(); } });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && lb.classList.contains('is-open')) { close(); } });
+})();
+</script>
+</body>
+</html>
