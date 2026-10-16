@@ -5,184 +5,600 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <meta name="description" content="Email systems for authors and personal-growth publishers.">
+<meta name="theme-color" content="#0b0b14">
 <title>Email for Authors</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-:root {
-  --accent: #B5573A;
-  --accent-deep: #8F412A;
-  --accent-tint: #F8EBE4;
-  --sage: #5E7A5D;
-  --sage-tint: #EAF0E6;
-  --ink: #2A2420;
-  --body: #55493F;
-  --muted: #7A6C60;
-  --line: #E9DFD3;
-  --paper: #FFFDF9;
-  --bg: #FBF6EE;
-  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
-  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --radius: 14px;
-  --shadow-card: 0 1px 2px rgba(60,40,20,.05), 0 8px 28px rgba(60,40,20,.07);
+:root{
+  --bg:#0b0b14; --ink:#f3f1fa; --body:#b9b7cc; --muted:#8582a0;
+  --violet:#8b7cf6; --rose:#f2a7b8; --peach:#ffcf9e;
+  --glass:rgba(255,255,255,.045); --line:rgba(255,255,255,.12);
+  --grad:linear-gradient(110deg,var(--violet),var(--rose) 55%,var(--peach));
+  --serif:"Fraunces",Georgia,serif; --sans:"Inter",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
 }
-* { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--bg); color: var(--body); font-family: var(--font-body); font-size: 1rem; line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-.wrap { max-width: 1040px; margin: 0 auto; padding: 0 1.25rem; }
-h1, h2, h3 { font-family: var(--font-display); color: var(--ink); font-weight: 500; margin: 0; line-height: 1.18; text-wrap: balance; }
-p { margin: 0; }
-a { color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
-a:hover { color: var(--accent-deep); }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--body);font:400 1rem/1.65 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,p,ul,ol{margin:0}
+ul,ol{padding:0;list-style:none}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--peach);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1120px,100%);margin:0 auto;padding:0 20px;position:relative;z-index:2}
 
-.hero { padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(2rem, 5vw, 3.5rem); }
-.hero h1 { font-size: clamp(2rem, 5vw, 3.4rem); letter-spacing: -.015em; max-width: 20ch; }
-.hero .lede { font-size: 1.15rem; max-width: 46ch; margin-top: 1.25rem; }
+/* backdrop */
+.aurora{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.38;will-change:transform}
+.b1{width:min(55vmax,820px);height:min(55vmax,820px);left:-10vw;top:-12vh;background:var(--violet);animation:drift1 28s ease-in-out infinite alternate}
+.b2{width:min(45vmax,700px);height:min(45vmax,700px);right:-8vw;top:12vh;background:var(--rose);opacity:.26;animation:drift2 34s ease-in-out infinite alternate}
+.b3{width:min(40vmax,640px);height:min(40vmax,640px);left:20vw;bottom:-10vh;background:var(--peach);opacity:.17;animation:drift3 40s ease-in-out infinite alternate}
+@keyframes drift1{to{transform:translate(18vw,14vh) scale(1.15)}}
+@keyframes drift2{to{transform:translate(-16vw,22vh) scale(.9)}}
+@keyframes drift3{to{transform:translate(14vw,-14vh) scale(1.2)}}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.07;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.progress{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--grad);z-index:60}
 
-section { padding: clamp(2.5rem, 6vw, 4.5rem) 0; border-top: 1px solid var(--line); }
-section h2 { font-size: clamp(1.5rem, 3.2vw, 2.1rem); margin-bottom: 1.75rem; }
+/* type */
+.tag{font:500 .72rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--peach);display:inline-flex;align-items:center;gap:.7rem}
+.tag::before{content:"";width:28px;height:1px;background:var(--grad)}
+h1,h2{font-family:var(--serif);font-weight:350;color:var(--ink);letter-spacing:-.02em;line-height:1.06;text-wrap:balance}
+h2{font-size:clamp(2rem,5vw,3.4rem);margin:1rem 0 1rem}
+h1 em,h2 em{font-style:italic;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.08em}
+h3{font-family:var(--serif);font-weight:400;color:var(--ink);font-size:1.35rem;line-height:1.2}
+.lede{max-width:60ch;font-size:1.05rem}
+section{padding:clamp(64px,10vw,120px) 0;position:relative}
+.sec-head{margin-bottom:clamp(28px,5vw,52px)}
 
-.cards { display: grid; gap: 1rem; grid-template-columns: 1fr; padding: 0; margin: 0; list-style: none; }
-.card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-card); padding: 1.4rem 1.4rem 1.5rem; min-width: 0; }
-.card h3 { font-size: 1.2rem; margin-bottom: .5rem; }
-.step { display: flex; gap: 1rem; align-items: flex-start; }
-.num { flex: none; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--accent-tint); color: var(--accent-deep); font-family: var(--font-display); font-weight: 600; display: grid; place-items: center; }
-.step h3 { margin-top: .25rem; }
+/* glass */
+.glass{position:relative;background:var(--glass);border:1px solid var(--line);border-radius:22px;-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);overflow:hidden;box-shadow:0 20px 60px -30px rgba(0,0,0,.7)}
+.glass::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s;background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(242,167,184,.16),transparent 60%)}
+@media (hover:hover) and (pointer:fine){.glass:hover::after{opacity:1}}
 
-/* Flow diagram */
-.flow { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: stretch; }
-.node { background: var(--sage-tint); border: 1px solid #D3E0CE; color: var(--ink); border-radius: 12px; padding: .8rem 1rem; text-align: center; font-weight: 500; font-size: .95rem; line-height: 1.35; }
-.node small { display: block; font-weight: 400; color: var(--muted); font-size: .8rem; }
-.node.accent { background: var(--accent-tint); border-color: #EBCDBF; }
-.arrow { height: 1.6rem; display: grid; place-items: center; color: var(--muted); }
-.arrow::before { content: "\2193"; font-size: 1.1rem; }
-.loop { margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; justify-content: center; text-align: center; font-size: .9rem; color: var(--accent-deep); border: 1.5px dashed var(--accent); border-radius: 12px; padding: .7rem 1rem; background: var(--paper); }
+/* reveal */
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
 
-.work-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
-.work-grid .card h3 { font-size: 1.15rem; }
-.tag { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--sage); margin-bottom: .4rem; }
-.card .body { margin-top: .6rem; }
+/* hero */
+.hero{min-height:min(92vh,820px);display:flex;align-items:center;padding:clamp(80px,12vw,140px) 0 clamp(60px,8vw,100px);overflow:hidden}
+.hero h1{font-size:clamp(2.5rem,7.4vw,5.9rem);margin:1.4rem 0 1.5rem;max-width:15ch}
+.hero .lede{font-size:clamp(1.05rem,1.6vw,1.25rem);max-width:56ch}
+.pills{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2rem}
+.pill{display:inline-flex;align-items:center;gap:.6rem;padding:.6rem 1.05rem;border-radius:99px;border:1px solid var(--line);background:var(--glass);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);font:500 .8rem/1.2 var(--mono);color:var(--ink)}
+.pill i{width:7px;height:7px;border-radius:50%;background:var(--peach);box-shadow:0 0 12px var(--peach)}
+.floaters{position:absolute;inset:0;pointer-events:none;z-index:1}
+.fc{position:absolute;width:150px;height:96px;border-radius:14px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.02));-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);padding:14px;animation:float 14s ease-in-out infinite alternate}
+.fc b{display:block;height:7px;width:40%;border-radius:4px;background:var(--grad);margin-bottom:12px;opacity:.9}
+.fc span{display:block;height:4px;border-radius:3px;background:rgba(255,255,255,.2);margin-bottom:8px}
+.fc span:nth-child(3){width:80%}.fc span:nth-child(4){width:55%}
+.fc:nth-child(1){right:8%;top:16%;--r:8deg}
+.fc:nth-child(2){right:22%;top:46%;width:180px;height:112px;--r:-6deg;animation-duration:18s;animation-delay:-4s}
+.fc:nth-child(3){right:5%;top:68%;width:130px;height:84px;--r:12deg;animation-duration:16s;animation-delay:-8s}
+.fc:nth-child(4){right:34%;top:12%;width:110px;height:72px;--r:-10deg;animation-duration:20s;animation-delay:-2s;opacity:.6}
+@keyframes float{from{transform:translateY(-14px) rotate(var(--r,0deg))}to{transform:translateY(26px) translateX(-16px) rotate(calc(var(--r,0deg) * -.6))}}
+@media (max-width:820px){.fc{opacity:.35}.fc:nth-child(n+3){display:none}.fc:nth-child(1){right:-20px}.fc:nth-child(2){right:-30px}}
 
-.chips { display: flex; flex-wrap: wrap; gap: .6rem; list-style: none; padding: 0; margin: 0; }
-.chip { display: inline-block; padding: .5rem 1rem; border: 1px solid var(--line); background: var(--paper); border-radius: 100px; text-decoration: none; font-size: .92rem; font-weight: 500; color: var(--ink); }
-.chip:hover { border-color: var(--accent); color: var(--accent-deep); }
+/* equation */
+.eq{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.6rem 1rem;padding:clamp(20px,3vw,34px);margin-bottom:22px;font-family:var(--serif);font-size:clamp(1.05rem,2.4vw,1.7rem);color:var(--ink);text-align:center}
+.eq .v{font-style:italic;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eq .frac{display:inline-flex;flex-direction:column;align-items:center;gap:.35rem}
+.eq .frac>span{padding:0 .5rem}
+.eq .frac>span:first-child{border-bottom:1px solid var(--line);padding-bottom:.35rem}
+.eq .t{transition:color .4s,text-shadow .4s}
+.eq .t.up.on{color:var(--peach);text-shadow:0 0 22px rgba(255,207,158,.5)}
+.eq .t.dn.on{color:var(--rose);text-shadow:0 0 22px rgba(242,167,184,.5)}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:start}
+.tile{text-align:left;cursor:pointer;padding:22px;width:100%;display:block}
+.tile .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.arrow{font:500 .72rem var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:.3rem .6rem;border-radius:99px;border:1px solid var(--line)}
+.up .arrow{color:var(--peach)}.dn .arrow{color:var(--rose)}
+.tile h3{margin-bottom:16px}
+.bar{display:block;height:56px;border-radius:10px;background:rgba(255,255,255,.05);position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.06)}
+.bar i{position:absolute;left:0;right:0;bottom:0;height:var(--h,50%);background:linear-gradient(to top,var(--violet),var(--rose) 70%,var(--peach));opacity:.85;transition:height 1.1s cubic-bezier(.2,.8,.2,1)}
+.tile.open .bar i{height:var(--to)}
+.det{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s ease}
+.det>div{overflow:hidden}
+.det p{padding-top:16px;font-size:.93rem}
+.tile.open .det{grid-template-rows:1fr}
+.tile .hint{display:block;margin-top:12px;font:400 .7rem var(--mono);color:var(--muted);letter-spacing:.08em}
+.stack{margin-top:22px;display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
+.stack .glass{padding:clamp(22px,3vw,34px)}
+.checks li{display:flex;gap:14px;align-items:flex-start;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07);color:var(--ink);font-size:.97rem}
+.checks li:last-child{border:0}
+.checks svg{flex:none;width:22px;height:22px;margin-top:2px}
+.checks path{stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .7s ease calc(var(--i)*.09s + .2s)}
+.in .checks path,.checks.in path{stroke-dashoffset:0}
+.guar{display:flex;flex-direction:column;justify-content:center;border-color:rgba(255,207,158,.35);background:linear-gradient(160deg,rgba(139,124,246,.14),rgba(255,207,158,.08))}
+.guar .tag{margin-bottom:1rem}
+.guar p{font:350 clamp(1.25rem,2.2vw,1.65rem)/1.35 var(--serif);color:var(--ink)}
 
-footer { border-top: 1px solid var(--line); padding: 2.5rem 0 3rem; text-align: center; }
-footer .name { color: var(--ink); font-family: var(--font-display); font-size: 1.05rem; }
-footer .small { color: var(--muted); font-size: .88rem; margin-top: .4rem; }
+/* journey */
+.jr{padding:clamp(20px,3vw,40px)}
+.jd{display:none;position:relative;aspect-ratio:1000/300}
+.jd svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.jm{display:block;position:relative;padding-left:56px;padding-right:48px}
+.node{position:relative;display:block;width:100%;text-align:left;background:none;border:0;padding:0;cursor:default}
+.dot{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:#15152a;border:1px solid var(--line);font:500 .72rem var(--mono);color:var(--peach);transition:border-color .3s,box-shadow .3s,transform .3s}
+.node:hover .dot,.node:focus-visible .dot,.node.act .dot{border-color:var(--rose);box-shadow:0 0 24px rgba(242,167,184,.45);transform:scale(1.12)}
+.nl{font-size:.88rem;color:var(--ink);line-height:1.3;text-align:center}
+.tip{position:absolute;z-index:5;width:210px;padding:10px 12px;border-radius:12px;background:rgba(20,20,40,.92);border:1px solid var(--line);color:var(--body);font-size:.8rem;line-height:1.45;text-align:left;opacity:0;pointer-events:none;transform:translateY(6px);transition:.25s;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.node:hover .tip,.node:focus-visible .tip,.node.act .tip{opacity:1;transform:none}
+.jd .node{position:absolute;left:var(--x);top:40%;width:130px;margin-left:-65px;transform:translateY(-20px);display:flex;flex-direction:column;align-items:center;gap:10px}
+.jd .tip{top:calc(100% + 6px);left:50%;margin-left:-105px;text-align:center}
+.jd .node:nth-of-type(2n) .tip{top:auto;bottom:calc(100% + 6px)}
+.jm .node{display:flex;align-items:center;gap:16px;padding:14px 0;min-height:68px}
+.jm .nl{text-align:left;font-size:.98rem}
+.jm .tip{left:56px;top:calc(100% - 8px);width:min(260px,calc(100vw - 150px))}
+.jm .line{position:absolute;left:19px;top:34px;bottom:34px;width:2px;background:linear-gradient(to bottom,var(--violet),var(--rose),var(--peach));opacity:.5;border-radius:2px}
+.jm .trav{position:absolute;left:14px;top:34px;width:12px;height:12px;border-radius:50%;background:var(--peach);box-shadow:0 0 18px 4px rgba(255,207,158,.7);animation:trav 7s linear infinite}
+@keyframes trav{from{top:34px}to{top:calc(100% - 46px)}}
+.jm svg.lp{position:absolute;right:0;width:46px;top:170px;height:204px;overflow:visible}
+.jm .lpl{position:absolute;right:50px;top:calc(100%/7*4);transform:translateY(-50%);width:80px;text-align:right;font:400 .62rem/1.3 var(--mono);color:var(--rose);letter-spacing:.04em;display:none}
+.jm .lbl2{margin:18px 0 0 56px;font:400 .72rem/1.5 var(--mono);color:var(--rose);letter-spacing:.06em}
+.lpath{stroke-dasharray:6 7;animation:dash 1.6s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-26}}
+@media (min-width:900px){.jd{display:block}.jm{display:none}}
 
-@media (min-width: 720px) {
-  .wrap { padding: 0 2rem; }
-  .cards.steps { grid-template-columns: repeat(2, 1fr); }
-  .work-grid { grid-template-columns: repeat(2, 1fr); }
-  .work-grid .wide { grid-column: 1 / -1; }
+/* work */
+.work{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.work .glass{padding:clamp(24px,3vw,40px);display:flex;flex-direction:column}
+.work .tag{margin-bottom:.9rem}
+.work h3{font-size:clamp(1.5rem,2.6vw,2rem);margin-bottom:1.6rem}
+.nums{display:grid;gap:18px;margin-bottom:1.6rem}
+.num{display:flex;align-items:baseline;gap:18px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.08)}
+.num:last-child{border:0}
+.num b{font:350 clamp(2.4rem,5vw,3.6rem)/1 var(--serif);background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;min-width:3.6ch;white-space:nowrap}
+.num span{font-size:.92rem;line-height:1.4}
+.work p.tx{margin-top:auto;font-size:.97rem}
+
+/* gallery */
+.egrid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 22px}
+.card{align-self:start;display:block;width:100%;background:none;border:0;padding:0;text-align:left;cursor:pointer}
+.fr{position:relative;height:440px;overflow:hidden;border-radius:18px;border:1px solid var(--line);background:#fff;box-shadow:0 24px 50px -28px rgba(0,0,0,.8);transition:transform .4s,box-shadow .4s,border-color .4s}
+.fr img{display:block;width:100%;height:auto;transform:translateY(var(--sy,0px));transition:transform var(--dur,4.5s) cubic-bezier(.22,.61,.36,1);will-change:transform}
+.fr::after{content:"";position:absolute;inset:auto 0 0 0;height:110px;background:linear-gradient(to bottom,transparent,rgba(11,11,20,.92));pointer-events:none}
+.cue{position:absolute;z-index:2;left:50%;bottom:16px;transform:translateX(-50%) translateY(8px);opacity:0;transition:.3s;padding:.5rem 1rem;border-radius:99px;background:rgba(20,20,40,.85);border:1px solid var(--line);color:var(--ink);font:500 .72rem var(--mono);letter-spacing:.08em;white-space:nowrap;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.cap{margin-top:14px;color:var(--ink);font-weight:500}
+.cap small{display:block;margin-top:2px;font-weight:400;font-size:.86rem;color:var(--muted)}
+@media (hover:hover) and (pointer:fine){
+  .card:hover .fr,.card:focus-visible .fr{transform:translateY(-6px);border-color:rgba(242,167,184,.5);box-shadow:0 34px 70px -26px rgba(139,124,246,.5)}
+  .card:hover .fr img,.card:focus-visible .fr img{transform:translateY(calc(var(--peek,0px) * -1))}
+  .card:hover .cue,.card:focus-visible .cue{opacity:1;transform:translateX(-50%)}
 }
-@media (min-width: 960px) {
-  .flow { flex-direction: row; align-items: stretch; }
-  .flow .node { flex: 1 1 0; display: grid; place-items: center; padding: .8rem .4rem; font-size: .86rem; min-width: 0; }
-  .flow .arrow { flex: none; width: 1.3rem; height: auto; }
-  .flow .arrow::before { content: "\2192"; }
+.badge{position:absolute;z-index:2;top:12px;left:12px;padding:.3rem .6rem;border-radius:99px;background:rgba(20,20,40,.8);border:1px solid var(--line);color:var(--peach);font:500 .65rem var(--mono);letter-spacing:.1em;text-transform:uppercase}
+
+/* shops */
+.rail{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 20px;padding:6px 20px 26px;margin:0 -20px;scrollbar-width:thin;scrollbar-color:var(--violet) transparent;-webkit-overflow-scrolling:touch}
+.rail .card{flex:0 0 min(440px,82vw);scroll-snap-align:start}
+.bw{border-radius:16px;border:1px solid var(--line);background:#15152a;overflow:hidden;transition:transform .4s,box-shadow .4s,border-color .4s}
+.chrome{display:flex;align-items:center;gap:7px;padding:11px 14px;background:rgba(255,255,255,.05);border-bottom:1px solid var(--line)}
+.chrome i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.22)}
+.chrome i:nth-child(1){background:#f2a7b8}.chrome i:nth-child(2){background:#ffcf9e}.chrome i:nth-child(3){background:#8b7cf6}
+.url{flex:1;margin-left:8px;padding:5px 12px;border-radius:99px;background:rgba(0,0,0,.28);font:400 .72rem var(--mono);color:var(--body);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.view{position:relative;height:290px;overflow:hidden;background:#222}
+.view img{position:absolute;top:0;left:0;width:100%}
+.view .h{height:100%;object-fit:cover;object-position:top}
+.view .f{height:auto;opacity:0;transform:translateY(0);transition:opacity .5s,transform 9s cubic-bezier(.3,.1,.3,1)}
+@media (hover:hover) and (pointer:fine){
+  .card:hover .bw,.card:focus-visible .bw{transform:translateY(-6px);border-color:rgba(242,167,184,.5);box-shadow:0 34px 70px -26px rgba(139,124,246,.5)}
+  .card.go .f{opacity:1;transform:translateY(calc(var(--peek,0px) * -1))}
 }
-.designs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
-.designs img{width:100%;height:220px;object-fit:cover;object-position:top;border-radius:10px;border:1px solid rgba(0,0,0,.08);display:block}
-@media (max-width:640px){.designs{grid-template-columns:repeat(2,1fr)}.designs img{height:180px}}
+.hintline{margin-top:6px;font:400 .72rem var(--mono);color:var(--muted);letter-spacing:.08em}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:100;display:none;overflow-y:auto;padding:clamp(12px,3vw,40px) 14px;background:rgba(8,8,16,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);overscroll-behavior:contain}
+.modal.open{display:block;animation:mfade .35s ease}
+@keyframes mfade{from{opacity:0}}
+.mi{margin:0 auto;max-width:var(--mw,720px);animation:mrise .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes mrise{from{transform:translateY(30px) scale(.98);opacity:0}}
+.mbar{position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:12px;padding:8px 8px 8px 18px;margin-bottom:12px;border-radius:99px;border:1px solid var(--line);background:rgba(20,20,40,.88);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.mtitle{flex:1;color:var(--ink);font-weight:500;font-size:.92rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.visit{flex:none;padding:.45rem .9rem;border-radius:99px;font:500 .72rem var(--mono);letter-spacing:.06em;color:#14121f;background:var(--grad);text-decoration:none}
+.visit[hidden]{display:none}
+.mx{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--ink);cursor:pointer;font-size:18px;line-height:1}
+.mx:hover{background:rgba(255,255,255,.18)}
+.mc img{display:block;width:100%;height:auto;border-radius:16px;background:#fff}
+.mc .bw{border-radius:16px}
+.mc .bw img{border-radius:0}
+
+/* cta */
+.cta{text-align:center;padding:clamp(40px,7vw,80px) 0 clamp(70px,10vw,120px)}
+.band{padding:clamp(44px,8vw,96px) 20px;border-radius:32px;background:linear-gradient(135deg,rgba(139,124,246,.22),rgba(242,167,184,.14) 55%,rgba(255,207,158,.14));border:1px solid var(--line)}
+.band h2{max-width:18ch;margin:1rem auto}
+.band p{font-size:1.1rem;color:var(--ink)}
+footer{padding:30px 0 50px;text-align:center;font:400 .78rem var(--mono);letter-spacing:.1em;color:var(--muted);position:relative;z-index:2}
+
+/* responsive */
+.stack>*,.work>*,.tiles>*,.egrid>*{min-width:0}
+@media (max-width:1000px){
+  .tiles{grid-template-columns:repeat(2,1fr)}
+  .egrid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:820px){
+  .stack,.work{grid-template-columns:minmax(0,1fr)}
+  .fr{height:380px}
+}
+@media (max-width:560px){
+  .tiles,.egrid{grid-template-columns:minmax(0,1fr)}
+  .wrap{padding:0 16px}
+  .rail{padding:6px 16px 26px;margin:0 -16px}
+  .num{flex-direction:column;gap:6px}
+  .view{height:240px}
+  .band{border-radius:24px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .js .rv{opacity:1;transform:none}
+  .checks path{stroke-dashoffset:0}
+}
 </style>
 </head>
 <body>
+<div class="progress" id="prog" aria-hidden="true"></div>
+<div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+<div class="grain" aria-hidden="true"></div>
+
 <header class="hero">
+  <div class="floaters" aria-hidden="true">
+    <div class="fc"><b></b><span></span><span></span><span></span></div>
+    <div class="fc"><b></b><span></span><span></span><span></span></div>
+    <div class="fc"><b></b><span></span><span></span><span></span></div>
+    <div class="fc"><b></b><span></span><span></span><span></span></div>
+  </div>
   <div class="wrap">
-    <h1>Email systems for authors and personal-growth publishers</h1>
-    <p class="lede">Turn the readers you already have into direct buyers, and keep them close between book launches.</p>
+    <span class="tag rv">Email systems for authors</span>
+    <h1 class="rv" style="--d:.1s">Your readers already trust you. <em>Let them buy from you.</em></h1>
+    <p class="lede rv" style="--d:.2s">A Klaviyo + Shopify system that turns the readers on your list into direct ebook buyers, and keeps them close between Amazon launches.</p>
+    <div class="pills rv" style="--d:.3s">
+      <span class="pill"><i></i>&euro;126K / quarter run through Klaviyo</span>
+      <span class="pill"><i></i>Klaviyo certified</span>
+    </div>
   </div>
 </header>
 
 <main>
-<section>
+<section id="offer">
   <div class="wrap">
-    <h2>How I'd set it up</h2>
-    <ol class="cards steps">
-      <li class="card step"><span class="num">1</span><div><h3>Audit</h3><p>Review the list, Klaviyo account and Shopify store. Clean the list, check deliverability, find what's already working.</p></div></li>
-      <li class="card step"><span class="num">2</span><div><h3>First offer</h3><p>Pick one ebook topic your readers already want, based on which books sold best and what they reply about. Price it as an easy first purchase.</p></div></li>
-      <li class="card step"><span class="num">3</span><div><h3>Buy and receive</h3><p>Shopify checkout with automatic ebook delivery the moment the order is paid. No manual sending.</p></div></li>
-      <li class="card step"><span class="num">4</span><div><h3>Flows</h3><p>Welcome, nurture, sales and post-purchase emails, written in a warm, personal voice. Value first, then the offer.</p></div></li>
-      <li class="card step"><span class="num">5</span><div><h3>Book launches</h3><p>A reusable Amazon launch sequence, plus a simple monthly campaign plan and reporting.</p></div></li>
-    </ol>
+    <div class="sec-head rv">
+      <span class="tag">01 / The offer</span>
+      <h2>An offer built on the <em>value equation</em></h2>
+      <p class="lede">Raise what readers get and how likely it feels. Cut the wait and the work. Tap each part to see how.</p>
+    </div>
+
+    <div class="eq glass rv" aria-label="Value equals dream outcome times perceived likelihood, divided by time delay times effort and sacrifice">
+      <span class="v">Value</span><span>=</span>
+      <span class="frac">
+        <span><span class="t up" data-k="0">Dream Outcome</span> &times; <span class="t up" data-k="1">Perceived Likelihood</span></span>
+        <span><span class="t dn" data-k="2">Time Delay</span> &times; <span class="t dn" data-k="3">Effort &amp; Sacrifice</span></span>
+      </span>
+    </div>
+
+    <div class="tiles" id="tiles">
+      <button class="tile glass up rv open" aria-expanded="true" data-k="0" style="--to:92%;--h:48%">
+        <span class="top"><span class="arrow">&uarr; Increase</span></span>
+        <h3>Dream outcome</h3>
+        <span class="bar"><i></i></span>
+        <span class="det"><div><p>Readers buy ebooks directly from you, at full margin, and show up on launch day for every new Amazon book.</p></div></span>
+      </button>
+      <button class="tile glass up rv" aria-expanded="false" data-k="1" style="--to:92%;--h:48%;--d:.08s">
+        <span class="top"><span class="arrow">&uarr; Increase</span></span>
+        <h3>Perceived likelihood</h3>
+        <span class="bar"><i></i></span>
+        <span class="det"><div><p>Built on a Klaviyo program that already drives ~&euro;126K a quarter. Every step of the reader journey tested end to end before handover.</p></div></span>
+      </button>
+      <button class="tile glass dn rv" aria-expanded="false" data-k="2" style="--to:12%;--h:52%;--d:.16s">
+        <span class="top"><span class="arrow">&darr; Decrease</span></span>
+        <h3>Time delay</h3>
+        <span class="bar"><i></i></span>
+        <span class="det"><div><p>First ebook offer live in about 2 weeks. Full system in about 5.</p></div></span>
+      </button>
+      <button class="tile glass dn rv" aria-expanded="false" data-k="3" style="--to:12%;--h:52%;--d:.24s">
+        <span class="top"><span class="arrow">&darr; Decrease</span></span>
+        <h3>Effort &amp; sacrifice</h3>
+        <span class="bar"><i></i></span>
+        <span class="det"><div><p>You write the ebook. I handle strategy, checkout, delivery, flows, copy and launches &mdash; and send you an outline so writing is easy.</p></div></span>
+      </button>
+    </div>
+
+    <div class="stack">
+      <div class="glass rv">
+        <span class="tag" style="margin-bottom:12px">What you get</span>
+        <ul class="checks" id="checks"></ul>
+      </div>
+      <div class="glass guar rv" style="--d:.12s">
+        <span class="tag">Guarantee</span>
+        <p>Handover guarantee: if any part of the purchase-and-delivery journey isn't working at handover, I fix it at no extra cost.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<section>
+<section id="journey">
   <div class="wrap">
-    <h2>The reader journey</h2>
-    <ol class="flow">
-      <li class="node">Signup<small>(book insert / form)</small></li>
-      <li class="arrow" aria-hidden="true"></li>
-      <li class="node">Welcome series</li>
-      <li class="arrow" aria-hidden="true"></li>
-      <li class="node">Nurture emails</li>
-      <li class="arrow" aria-hidden="true"></li>
-      <li class="node accent">Ebook offer</li>
-      <li class="arrow" aria-hidden="true"></li>
-      <li class="node">Instant delivery</li>
-      <li class="arrow" aria-hidden="true"></li>
-      <li class="node">Post-purchase</li>
-      <li class="arrow" aria-hidden="true"></li>
-      <li class="node accent">Next book launch</li>
-    </ol>
-    <div class="loop"><span>&#8635; After each purchase, readers loop back into nurture, <em>segmented by the topics they bought</em></span></div>
+    <div class="sec-head rv">
+      <span class="tag">02 / The reader journey</span>
+      <h2>One path, <em>always in motion</em></h2>
+      <p class="lede">Hover or focus a step to see what that email does.</p>
+    </div>
+    <div class="jr glass rv">
+      <div class="jd" id="jd">
+        <svg viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="g1" gradientUnits="userSpaceOnUse" x1="71" x2="929" y1="0" y2="0"><stop offset="0" stop-color="#8b7cf6"/><stop offset=".6" stop-color="#f2a7b8"/><stop offset="1" stop-color="#ffcf9e"/></linearGradient>
+            <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke="#f2a7b8" stroke-width="1.6"/></marker>
+          </defs>
+          <path id="mainp" d="M71 120H929" stroke="url(#g1)" stroke-width="2" fill="none" opacity=".6"/>
+          <path id="loopp" class="lpath" d="M786 190C786 262 357 262 357 190" stroke="#f2a7b8" stroke-width="1.5" fill="none" marker-end="url(#ar)" opacity=".85"/>
+          <circle r="6" fill="#ffcf9e" style="filter:drop-shadow(0 0 8px #ffcf9e)"><animateMotion dur="9s" repeatCount="indefinite" calcMode="linear"><mpath href="#mainp"/></animateMotion></circle>
+          <circle r="4" fill="#f2a7b8" style="filter:drop-shadow(0 0 6px #f2a7b8)"><animateMotion dur="5s" repeatCount="indefinite"><mpath href="#loopp"/></animateMotion></circle>
+        </svg>
+        <div class="lbl" style="position:absolute;left:35.7%;width:42.9%;top:88%;text-align:center;font:400 .72rem var(--mono);color:var(--rose);letter-spacing:.08em">loops back, segmented by topic</div>
+      </div>
+      <div class="jm" id="jm">
+        <div class="line"></div><div class="trav"></div>
+        <svg class="lp" viewBox="0 0 46 100" preserveAspectRatio="none" aria-hidden="true"><path class="lpath" d="M0 100C46 100 46 0 4 2" fill="none" stroke="#f2a7b8" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg>
+        <p class="lbl2">&#8635; loops back, segmented by topic</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<section>
+<section id="work">
   <div class="wrap">
-    <h2>Relevant work</h2>
-    <div class="work-grid">
-      <article class="card">
-        <p class="tag">Personal-growth education brand</p>
+    <div class="sec-head rv">
+      <span class="tag">03 / Relevant work</span>
+      <h2>Proof from <em>real programmes</em></h2>
+    </div>
+    <div class="work">
+      <article class="glass rv">
+        <span class="tag">Personal-growth education</span>
         <h3>Enneagram Matrix</h3>
-        <p class="body">Built the email automation behind their funnel: survey-based signup, automated nurture, webinar sequences and purchase reminders for digital products.</p>
-      </article>
-      <article class="card">
-        <p class="tag">D2C jewellery, Stanbarry</p>
-        <h3>Klaviyo across 5 Shopify stores</h3>
-        <p class="body">Run the full Klaviyo program across German, Dutch, French, Spanish and Australian storefronts. About &euro;126,000 attributed revenue per quarter. Grew German campaign revenue 2.4x. Built the Dutch store's email from zero to &euro;23,000 a quarter.</p>
-      </article>
-      <article class="card wide">
-        <p class="tag">Email design samples</p>
-        <p class="body">A few emails I've written and designed. Tap to open full size.</p>
-        <div class="designs">
-          <a href="../img/stanbarry.jpg" target="_blank" rel="noopener"><img src="../img/stanbarry.jpg" alt="Stanbarry email design" loading="lazy"></a>
-          <a href="../img/jim-tonic.jpg" target="_blank" rel="noopener"><img src="../img/jim-tonic.jpg" alt="Jim &amp; Tonic email design" loading="lazy"></a>
-          <a href="../img/aamra.jpg" target="_blank" rel="noopener"><img src="../img/aamra.jpg" alt="Aamra email design" loading="lazy"></a>
-          <a href="../img/fragrancebuy.jpg" target="_blank" rel="noopener"><img src="../img/fragrancebuy.jpg" alt="FragranceBuy email design" loading="lazy"></a>
+        <div class="nums">
+          <div class="num"><b data-count="8">8</b><span>free self-discovery tests feeding one funnel</span></div>
+          <div class="num"><b data-count="6">6</b><span>tools wired into one automated system (survey, CRM/email, webinar, payments, course platform, automation)</span></div>
+          <div class="num"><b data-count="5997" data-pre="$">$5,997</b><span>top programme the funnel sells into</span></div>
         </div>
+        <p class="tx">Built the email automation behind their funnel: survey-based signup, automated nurture, webinar sequences and purchase reminders. Same reader as yours: people actively working on themselves.</p>
+      </article>
+      <article class="glass rv" style="--d:.1s">
+        <span class="tag">Klaviyo across 5 Shopify stores</span>
+        <h3>Stanbarry</h3>
+        <div class="nums">
+          <div class="num"><b data-count="126" data-pre="&euro;" data-suf="K">&euro;126K</b><span>attributed per quarter</span></div>
+          <div class="num"><b data-count="2.4" data-dec="1" data-suf="x">2.4x</b><span>German campaign revenue</span></div>
+          <div class="num"><b data-count="23" data-pre="&euro;0 &rarr; &euro;" data-suf="K">&euro;0 &rarr; &euro;23K</b><span>Dutch store email revenue per quarter</span></div>
+        </div>
+        <p class="tx">Full Klaviyo program across German, Dutch, French, Spanish and Australian storefronts: calendar, flows, segmentation, reporting.</p>
       </article>
     </div>
   </div>
 </section>
 
-<section>
+<section id="emails">
   <div class="wrap">
-    <h2>Shopify stores I've built</h2>
-    <ul class="chips">
-      <li><a class="chip" href="https://stanbarry.com" target="_blank" rel="noopener">stanbarry.com</a></li>
-      <li><a class="chip" href="https://mrida.co" target="_blank" rel="noopener">mrida.co</a></li>
-      <li><a class="chip" href="https://creaturesofhabit.in" target="_blank" rel="noopener">creaturesofhabit.in</a></li>
-      <li><a class="chip" href="https://polkisarees.com" target="_blank" rel="noopener">polkisarees.com</a></li>
-      <li><a class="chip" href="https://nativeforestnursery.com" target="_blank" rel="noopener">nativeforestnursery.com</a></li>
-      <li><a class="chip" href="https://sezoatma.com" target="_blank" rel="noopener">sezoatma.com</a></li>
-      <li><a class="chip" href="https://ultimatebars.com" target="_blank" rel="noopener">ultimatebars.com</a></li>
-    </ul>
+    <div class="sec-head rv">
+      <span class="tag">04 / Emails I've designed</span>
+      <h2>Hover to scroll, <em>tap to open</em></h2>
+      <p class="lede">Each thumbnail glides down its email. Open one to read it full length.</p>
+    </div>
+    <div class="egrid" id="egrid"></div>
+  </div>
+</section>
+
+<section id="shops">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="tag">05 / Shopify stores I've built</span>
+      <h2>Storefronts, <em>scrolled live</em></h2>
+      <p class="lede">Hover a window to scroll the page. Click for the full-length view.</p>
+    </div>
+    <div class="rail" id="rail" tabindex="-1"></div>
+    <p class="hintline">&larr; swipe or scroll &rarr;</p>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div class="band rv">
+      <span class="tag">Next step</span>
+      <h2>Let's turn your list into your <em>best-selling channel.</em></h2>
+      <p>Reply on Upwork and I'll start with the audit.</p>
+    </div>
   </div>
 </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <p class="name">Anish Kapoor &middot; Klaviyo certified</p>
-    <p class="small">Reply on Upwork to discuss your project.</p>
+<footer>Anish Kapoor &middot; Klaviyo certified</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mtitle">
+  <div class="mi" id="mi">
+    <div class="mbar">
+      <span class="mtitle" id="mtitle"></span>
+      <a class="visit" id="visit" target="_blank" rel="noopener noreferrer" hidden>Visit live site &#8599;</a>
+      <button class="mx" id="mx" aria-label="Close">&times;</button>
+    </div>
+    <div class="mc" id="mc"></div>
   </div>
-</footer>
+</div>
+
+<script>
+(function(){
+var d=document, root=d.documentElement;
+root.classList.add('js');
+var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+function $(s,c){return (c||d).querySelector(s)}
+function $$(s,c){return Array.prototype.slice.call((c||d).querySelectorAll(s))}
+
+/* data */
+var EMAILS=[
+ ['stanbarry','Stanbarry','Product launch campaign for a D2C jewelry brand',1],
+ ['jim-tonic','Jim & Tonic','Limited-release pre-order, scarcity launch built around serving ritual'],
+ ['aamra','Aamra','Mother’s Day gifting, gift-box merchandising'],
+ ['fragrancebuy','FragranceBuy','Code-expiry winback, urgency plus social proof to recover lapsed carts'],
+ ['minus-thirty','Minus Thirty','Match-day moment marketing for a D2C dessert brand'],
+ ['and-soda','&SODA','Range showcase, flavour-led merchandising']
+];
+var SHOPS=['stanbarry.com','mrida.co','creaturesofhabit.in','polkisarees.com'];
+var STACK=['Audit of list, Klaviyo and Shopify','First ebook offer (topic, positioning, pricing)','Checkout + instant ebook delivery','Signup forms + landing page','Welcome, nurture, sales and post-purchase flows','Reusable Amazon launch sequence','Segmentation by reader topic + reporting','End-to-end testing + handover guide'];
+var STEPS=[
+ ['Signup','A calm welcome the moment a reader joins from a book insert or form.'],
+ ['Welcome','Introduces you, sets expectations and delivers a first helpful piece.'],
+ ['Nurture','Value-first stories and practices that build trust before any offer.'],
+ ['Ebook offer','A gentle, well-timed invitation to buy your next ebook direct.'],
+ ['Instant delivery','Order confirmed and the ebook lands in their inbox automatically.'],
+ ['Post-purchase','Thanks, how to get the most from the book, and a next step.'],
+ ['Next book launch','A reusable sequence that brings readers back on Amazon launch day.']
+];
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+
+/* checks */
+$('#checks').innerHTML=STACK.map(function(t,i){return '<li style="--i:'+i+'"><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="10" stroke="rgba(255,255,255,.2)"/><path d="M6.5 11.5l3 3 6-7" stroke="#ffcf9e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>'+esc(t)+'</span></li>'}).join('');
+
+/* journey */
+var jd=$('#jd'), jm=$('#jm');
+STEPS.forEach(function(s,i){
+  var x=((i+.5)/7*100);
+  var a=d.createElement('button'); a.type='button'; a.className='node'; a.style.setProperty('--x',x+'%');
+  a.innerHTML='<span class="dot">'+(i+1)+'</span><span class="nl">'+s[0]+'</span><span class="tip" role="tooltip">'+s[1]+'</span>';
+  jd.appendChild(a);
+  var b=a.cloneNode(true); b.style.removeProperty('--x'); jm.insertBefore(b,$('.lbl2',jm));
+});
+/* desktop positions follow the svg: x = (i+.5)/7*1000 */
+$$('.node',jm).forEach(function(n){n.addEventListener('click',function(){var on=n.classList.contains('act');$$('.node',jm).forEach(function(m){m.classList.remove('act')});if(!on)n.classList.add('act')})});
+(function(){var m=$('#mainp'); m.setAttribute('d','M71 120H929');})();
+if(reduce){$$('animateMotion').forEach(function(a){a.parentNode.remove()})}
+
+/* offer tiles */
+var tiles=$$('.tile'), eqt=$$('.eq .t');
+function sync(){tiles.forEach(function(t){var on=t.classList.contains('open');t.setAttribute('aria-expanded',on);eqt[+t.dataset.k].classList.toggle('on',on)})}
+tiles.forEach(function(t){
+  t.addEventListener('click',function(){t.classList.toggle('open');sync()});
+  if(fine){t.addEventListener('mouseenter',function(){t.classList.add('open');sync()})}
+});
+sync();
+
+/* email gallery */
+var eg=$('#egrid');
+EMAILS.forEach(function(e){
+  var b=d.createElement('button'); b.type='button'; b.className='card'; b.dataset.src='../img/'+e[0]+'.jpg'; b.dataset.title=e[1]+' email';
+  b.innerHTML='<div class="fr">'+(e[3]?'<span class="badge">Live client</span>':'')+'<img src="../img/'+e[0]+'.jpg" alt="'+esc(e[1])+' marketing email design" loading="lazy"><span class="cue">VIEW FULL EMAIL</span></div><div class="cap">'+esc(e[1])+'<small>'+esc(e[2])+'</small></div>';
+  var img=$('img',b); img.addEventListener('error',function(){b.style.display='none'});
+  eg.appendChild(b);
+  b.addEventListener('click',function(){openModal(b,'email',e[1]+' email',b.dataset.src,e[1])});
+});
+function peeks(){
+  $$('.fr',eg).forEach(function(f){var im=$('img',f);if(!im.complete||!im.naturalHeight)return;
+    var peek=Math.max(0,im.offsetHeight-f.clientHeight);f.style.setProperty('--peek',peek+'px');f.style.setProperty('--dur',Math.max(3,peek/180)+'s');f._peek=peek});
+}
+$$('.fr img',eg).forEach(function(i){i.addEventListener('load',peeks)});
+window.addEventListener('resize',peeks);
+
+/* shops */
+var rail=$('#rail');
+SHOPS.forEach(function(dom){
+  var base='shops/'+dom;
+  var c=d.createElement('button'); c.type='button'; c.className='card';
+  c.innerHTML='<div class="bw"><div class="chrome"><i></i><i></i><i></i><span class="url">'+dom+'</span></div><div class="view"><img class="h" src="'+base+'-hero.jpg" alt="'+dom+' Shopify store homepage" loading="lazy"></div></div><div class="cap">'+dom+'</div>';
+  var h=$('.h',c); h.addEventListener('error',function(){c.remove()});
+  var view=$('.view',c), full=null;
+  function ensure(){
+    if(full)return; full=new Image(); full.className='f'; full.alt=''; full.setAttribute('aria-hidden','true');
+    full.onload=function(){c.style.setProperty('--peek',Math.max(0,full.offsetHeight-view.clientHeight)+'px')};
+    full.onerror=function(){full=null};
+    view.appendChild(full); full.src=base+'-full.jpg';
+  }
+  if(fine){
+    c.addEventListener('mouseenter',function(){ensure();c.classList.add('go');if(full&&full.complete)c.style.setProperty('--peek',Math.max(0,full.offsetHeight-view.clientHeight)+'px')});
+    c.addEventListener('mouseleave',function(){c.classList.remove('go')});
+    c.addEventListener('focus',function(){ensure();c.classList.add('go')});
+    c.addEventListener('blur',function(){c.classList.remove('go')});
+  }
+  c.addEventListener('click',function(){openModal(c,'shop',dom,base+'-full.jpg',dom)});
+  rail.appendChild(c);
+});
+
+/* modal */
+var modal=$('#modal'), mc=$('#mc'), mt=$('#mtitle'), visit=$('#visit'), mx=$('#mx'), mi=$('#mi'), lastFocus=null;
+function openModal(from,kind,title,src,name){
+  lastFocus=from; mt.textContent=title;
+  var alt=name+(kind==='shop'?' Shopify store, full page screenshot':' marketing email, full length');
+  if(kind==='shop'){
+    mi.style.setProperty('--mw','980px');
+    mc.innerHTML='<div class="bw"><div class="chrome"><i></i><i></i><i></i><span class="url">'+name+'</span></div><img src="'+src+'" alt="'+alt+'"></div>';
+    visit.href='https://'+name; visit.hidden=false;
+  }else{
+    mi.style.setProperty('--mw','720px'); mc.innerHTML='<img src="'+src+'" alt="'+alt+'">'; visit.hidden=true; visit.removeAttribute('href');
+  }
+  modal.classList.add('open'); modal.scrollTop=0; d.body.style.overflow='hidden'; mx.focus();
+}
+function closeModal(){
+  modal.classList.remove('open'); mc.innerHTML=''; d.body.style.overflow='';
+  if(lastFocus)lastFocus.focus();
+}
+mx.addEventListener('click',closeModal);
+modal.addEventListener('click',function(e){if(e.target===modal||e.target===mi)closeModal()});
+d.addEventListener('keydown',function(e){
+  if(!modal.classList.contains('open'))return;
+  if(e.key==='Escape'){closeModal();return}
+  if(e.key==='Tab'){
+    var f=[mx].concat(visit.hidden?[]:[visit]); f=[visit,mx].filter(function(x){return !x.hidden});
+    var first=f[0], last=f[f.length-1];
+    if(e.shiftKey&&d.activeElement===first){e.preventDefault();last.focus()}
+    else if(!e.shiftKey&&d.activeElement===last){e.preventDefault();first.focus()}
+    else if(f.indexOf(d.activeElement)<0){e.preventDefault();first.focus()}
+  }
+});
+
+/* touch: scroll-linked thumbnail motion */
+var ticking=false;
+function linked(){
+  ticking=false; if(fine)return;
+  $$('.fr',eg).forEach(function(f){
+    if(!f._peek)return; var r=f.getBoundingClientRect(), vh=window.innerHeight;
+    var p=Math.min(1,Math.max(0,(vh-r.top)/(vh+r.height)));
+    var im=$('img',f); im.style.transition='none'; im.style.transform='translateY('+(-f._peek*p)+'px)';
+  });
+}
+
+/* count up */
+function fmt(v,dec){return dec?v.toFixed(dec):Math.round(v).toLocaleString('en-US')}
+function count(el){
+  var to=parseFloat(el.dataset.count), dec=+el.dataset.dec||0, pre=el.dataset.pre||'', suf=el.dataset.suf||'';
+  var tmp=d.createElement('i'); function wrap(s){tmp.innerHTML=s;return tmp.textContent}
+  pre=wrap(pre);
+  if(reduce){return}
+  var t0=null, dur=1600;
+  function step(t){if(!t0)t0=t; var p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3);
+    el.textContent=pre+fmt(to*e,dec)+suf; if(p<1)requestAnimationFrame(step)}
+  requestAnimationFrame(step);
+}
+
+/* reveal */
+function show(el){
+  el.classList.add('in');
+  $$('[data-count]',el).forEach(function(n){if(!n._c){n._c=1;count(n)}});
+  if(el.classList.contains('stack')||el.querySelector('.checks'))$$('.checks',el).forEach(function(c){c.classList.add('in')});
+}
+var rvs=$$('.rv');
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){show(e.target);io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -4% 0px'});
+  rvs.forEach(function(r){io.observe(r)});
+}else{rvs.forEach(show)}
+setTimeout(function(){rvs.forEach(function(r){if(!r.classList.contains('in')){var b=r.getBoundingClientRect();if(b.top<window.innerHeight*1.5)show(r)}})},2500);
+
+/* progress + glow */
+var prog=$('#prog');
+function onScroll(){
+  var h=root.scrollHeight-window.innerHeight; prog.style.transform='scaleX('+(h>0?Math.min(1,window.scrollY/h):0)+')';
+  if(!ticking){ticking=true;requestAnimationFrame(linked)}
+}
+window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+if(fine){
+  d.addEventListener('mousemove',function(e){var g=e.target.closest&&e.target.closest('.glass');if(!g)return;var r=g.getBoundingClientRect();g.style.setProperty('--mx',(e.clientX-r.left)+'px');g.style.setProperty('--my',(e.clientY-r.top)+'px')},{passive:true});
+}
+window.addEventListener('load',function(){peeks();linked()});
+})();
+</script>
 </body>
 </html>
