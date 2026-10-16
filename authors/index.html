@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Email systems for authors and personal-growth publishers.">
+<title>Email for Authors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  --accent: #B5573A;
+  --accent-deep: #8F412A;
+  --accent-tint: #F8EBE4;
+  --sage: #5E7A5D;
+  --sage-tint: #EAF0E6;
+  --ink: #2A2420;
+  --body: #55493F;
+  --muted: #7A6C60;
+  --line: #E9DFD3;
+  --paper: #FFFDF9;
+  --bg: #FBF6EE;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --radius: 14px;
+  --shadow-card: 0 1px 2px rgba(60,40,20,.05), 0 8px 28px rgba(60,40,20,.07);
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--body); font-family: var(--font-body); font-size: 1rem; line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 1.25rem; }
+h1, h2, h3 { font-family: var(--font-display); color: var(--ink); font-weight: 500; margin: 0; line-height: 1.18; text-wrap: balance; }
+p { margin: 0; }
+a { color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { color: var(--accent-deep); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.hero { padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(2rem, 5vw, 3.5rem); }
+.hero h1 { font-size: clamp(2rem, 5vw, 3.4rem); letter-spacing: -.015em; max-width: 20ch; }
+.hero .lede { font-size: 1.15rem; max-width: 46ch; margin-top: 1.25rem; }
+
+section { padding: clamp(2.5rem, 6vw, 4.5rem) 0; border-top: 1px solid var(--line); }
+section h2 { font-size: clamp(1.5rem, 3.2vw, 2.1rem); margin-bottom: 1.75rem; }
+
+.cards { display: grid; gap: 1rem; grid-template-columns: 1fr; padding: 0; margin: 0; list-style: none; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-card); padding: 1.4rem 1.4rem 1.5rem; min-width: 0; }
+.card h3 { font-size: 1.2rem; margin-bottom: .5rem; }
+.step { display: flex; gap: 1rem; align-items: flex-start; }
+.num { flex: none; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--accent-tint); color: var(--accent-deep); font-family: var(--font-display); font-weight: 600; display: grid; place-items: center; }
+.step h3 { margin-top: .25rem; }
+
+/* Flow diagram */
+.flow { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: stretch; }
+.node { background: var(--sage-tint); border: 1px solid #D3E0CE; color: var(--ink); border-radius: 12px; padding: .8rem 1rem; text-align: center; font-weight: 500; font-size: .95rem; line-height: 1.35; }
+.node small { display: block; font-weight: 400; color: var(--muted); font-size: .8rem; }
+.node.accent { background: var(--accent-tint); border-color: #EBCDBF; }
+.arrow { height: 1.6rem; display: grid; place-items: center; color: var(--muted); }
+.arrow::before { content: "\2193"; font-size: 1.1rem; }
+.loop { margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; justify-content: center; text-align: center; font-size: .9rem; color: var(--accent-deep); border: 1.5px dashed var(--accent); border-radius: 12px; padding: .7rem 1rem; background: var(--paper); }
+
+.work-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+.work-grid .card h3 { font-size: 1.15rem; }
+.tag { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--sage); margin-bottom: .4rem; }
+.card .body { margin-top: .6rem; }
+
+.chips { display: flex; flex-wrap: wrap; gap: .6rem; list-style: none; padding: 0; margin: 0; }
+.chip { display: inline-block; padding: .5rem 1rem; border: 1px solid var(--line); background: var(--paper); border-radius: 100px; text-decoration: none; font-size: .92rem; font-weight: 500; color: var(--ink); }
+.chip:hover { border-color: var(--accent); color: var(--accent-deep); }
+
+footer { border-top: 1px solid var(--line); padding: 2.5rem 0 3rem; text-align: center; }
+footer .name { color: var(--ink); font-family: var(--font-display); font-size: 1.05rem; }
+footer .small { color: var(--muted); font-size: .88rem; margin-top: .4rem; }
+
+@media (min-width: 720px) {
+  .wrap { padding: 0 2rem; }
+  .cards.steps { grid-template-columns: repeat(2, 1fr); }
+  .work-grid { grid-template-columns: repeat(2, 1fr); }
+  .work-grid .wide { grid-column: 1 / -1; }
+}
+@media (min-width: 960px) {
+  .flow { flex-direction: row; align-items: stretch; }
+  .flow .node { flex: 1 1 0; display: grid; place-items: center; padding: .8rem .4rem; font-size: .86rem; min-width: 0; }
+  .flow .arrow { flex: none; width: 1.3rem; height: auto; }
+  .flow .arrow::before { content: "\2192"; }
+}
+.designs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.designs img{width:100%;height:220px;object-fit:cover;object-position:top;border-radius:10px;border:1px solid rgba(0,0,0,.08);display:block}
+@media (max-width:640px){.designs{grid-template-columns:repeat(2,1fr)}.designs img{height:180px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <h1>Email systems for authors and personal-growth publishers</h1>
+    <p class="lede">Turn the readers you already have into direct buyers, and keep them close between book launches.</p>
+  </div>
+</header>
+
+<main>
+<section>
+  <div class="wrap">
+    <h2>How I'd set it up</h2>
+    <ol class="cards steps">
+      <li class="card step"><span class="num">1</span><div><h3>Audit</h3><p>Review the list, Klaviyo account and Shopify store. Clean the list, check deliverability, find what's already working.</p></div></li>
+      <li class="card step"><span class="num">2</span><div><h3>First offer</h3><p>Pick one ebook topic your readers already want, based on which books sold best and what they reply about. Price it as an easy first purchase.</p></div></li>
+      <li class="card step"><span class="num">3</span><div><h3>Buy and receive</h3><p>Shopify checkout with automatic ebook delivery the moment the order is paid. No manual sending.</p></div></li>
+      <li class="card step"><span class="num">4</span><div><h3>Flows</h3><p>Welcome, nurture, sales and post-purchase emails, written in a warm, personal voice. Value first, then the offer.</p></div></li>
+      <li class="card step"><span class="num">5</span><div><h3>Book launches</h3><p>A reusable Amazon launch sequence, plus a simple monthly campaign plan and reporting.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The reader journey</h2>
+    <ol class="flow">
+      <li class="node">Signup<small>(book insert / form)</small></li>
+      <li class="arrow" aria-hidden="true"></li>
+      <li class="node">Welcome series</li>
+      <li class="arrow" aria-hidden="true"></li>
+      <li class="node">Nurture emails</li>
+      <li class="arrow" aria-hidden="true"></li>
+      <li class="node accent">Ebook offer</li>
+      <li class="arrow" aria-hidden="true"></li>
+      <li class="node">Instant delivery</li>
+      <li class="arrow" aria-hidden="true"></li>
+      <li class="node">Post-purchase</li>
+      <li class="arrow" aria-hidden="true"></li>
+      <li class="node accent">Next book launch</li>
+    </ol>
+    <div class="loop"><span>&#8635; After each purchase, readers loop back into nurture, <em>segmented by the topics they bought</em></span></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Relevant work</h2>
+    <div class="work-grid">
+      <article class="card">
+        <p class="tag">Personal-growth education brand</p>
+        <h3>Enneagram Matrix</h3>
+        <p class="body">Built the email automation behind their funnel: survey-based signup, automated nurture, webinar sequences and purchase reminders for digital products.</p>
+      </article>
+      <article class="card">
+        <p class="tag">D2C jewellery, Stanbarry</p>
+        <h3>Klaviyo across 5 Shopify stores</h3>
+        <p class="body">Run the full Klaviyo program across German, Dutch, French, Spanish and Australian storefronts. About &euro;126,000 attributed revenue per quarter. Grew German campaign revenue 2.4x. Built the Dutch store's email from zero to &euro;23,000 a quarter.</p>
+      </article>
+      <article class="card wide">
+        <p class="tag">Email design samples</p>
+        <p class="body">A few emails I've written and designed. Tap to open full size.</p>
+        <div class="designs">
+          <a href="../img/stanbarry.jpg" target="_blank" rel="noopener"><img src="../img/stanbarry.jpg" alt="Stanbarry email design" loading="lazy"></a>
+          <a href="../img/jim-tonic.jpg" target="_blank" rel="noopener"><img src="../img/jim-tonic.jpg" alt="Jim &amp; Tonic email design" loading="lazy"></a>
+          <a href="../img/aamra.jpg" target="_blank" rel="noopener"><img src="../img/aamra.jpg" alt="Aamra email design" loading="lazy"></a>
+          <a href="../img/fragrancebuy.jpg" target="_blank" rel="noopener"><img src="../img/fragrancebuy.jpg" alt="FragranceBuy email design" loading="lazy"></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Shopify stores I've built</h2>
+    <ul class="chips">
+      <li><a class="chip" href="https://stanbarry.com" target="_blank" rel="noopener">stanbarry.com</a></li>
+      <li><a class="chip" href="https://mrida.co" target="_blank" rel="noopener">mrida.co</a></li>
+      <li><a class="chip" href="https://creaturesofhabit.in" target="_blank" rel="noopener">creaturesofhabit.in</a></li>
+      <li><a class="chip" href="https://polkisarees.com" target="_blank" rel="noopener">polkisarees.com</a></li>
+      <li><a class="chip" href="https://nativeforestnursery.com" target="_blank" rel="noopener">nativeforestnursery.com</a></li>
+      <li><a class="chip" href="https://sezoatma.com" target="_blank" rel="noopener">sezoatma.com</a></li>
+      <li><a class="chip" href="https://ultimatebars.com" target="_blank" rel="noopener">ultimatebars.com</a></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="name">Anish Kapoor &middot; Klaviyo certified</p>
+    <p class="small">Reply on Upwork to discuss your project.</p>
+  </div>
+</footer>
+</body>
+</html>
